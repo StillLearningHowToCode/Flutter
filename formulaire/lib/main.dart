@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MaterialApp(
+    home: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -123,6 +125,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     //! vérif si pas de valeur 'null'
                     print("Validated");
                     clicLogin();
+                    // Navigator.push(context, MaterialPageRoute(builder: context) => const SecondRoute());
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SecondRoute()),
+                    );
                   } else {
                     print("Not Validated");
                   }
@@ -133,6 +141,27 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
             mainAxisAlignment: MainAxisAlignment.center,
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class SecondRoute extends StatelessWidget {
+  const SecondRoute({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Second Route'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
         ),
       ),
     );
