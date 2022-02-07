@@ -63,18 +63,23 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               // Text('Login'),
               TextFormField(
-                controller: _teLogin,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Login',
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Le login est obligatoire !';
-                  }
-                  return null;
-                },
-              ),
+                  controller: _teLogin,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Login',
+                  ),
+                  // validator: (value) {
+                  //   if (value == null || value.isEmpty) {
+                  //     return 'Le login est obligatoire !';
+                  //   }
+                  //   return null;
+                  // },
+                  validator: MultiValidator([
+                    RequiredValidator(errorText: "Login is required"),
+                    EmailValidator(errorText: "Enter valid email id"),
+                  ])
+                  // validator: EmailValidator(errorText: "Enter valid email id"),
+                  ),
               // Text('Mot De Passe'),
               Padding(
                 // Even Padding On All Sides
@@ -87,16 +92,25 @@ class _MyHomePageState extends State<MyHomePage> {
                   border: OutlineInputBorder(),
                   hintText: 'Password',
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Le mot de passe est obligatoire !';
-                  } else if (value.length < 6) {
-                    return "Password should be atleast 6 characters";
-                  } else if (value.length > 15) {
-                    return "Password should not be greater than 15 characters";
-                  } else
-                    return null;
-                },
+                // Sans extension validator flutter
+                // validator: (value) {
+                //   if (value == null || value.isEmpty) {
+                //     return 'Le mot de passe est obligatoire !';
+                //   } else if (value.length < 6) {
+                //     return "Password should be atleast 6 characters";
+                //   } else if (value.length > 15) {
+                //     return "Password should not be greater than 15 characters";
+                //   } else
+                //     return null;
+                // },
+                validator: MultiValidator([
+                  RequiredValidator(errorText: "Password is Required"),
+                  MinLengthValidator(6,
+                      errorText: "Password should be atleast 6 characters"),
+                  MaxLengthValidator(15,
+                      errorText:
+                          "Password should not be greater than 15 characters")
+                ]),
               ),
               Padding(
                 // Even Padding On All Sides
