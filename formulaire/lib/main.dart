@@ -60,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
           key: _formKey,
           child: Column(
             children: <Widget>[
+              Text('Login'),
               TextFormField(
                 controller: _teLogin,
                 decoration: const InputDecoration(
@@ -67,6 +68,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Le login est obligatoire !';
+                  }
+                  return null;
+                },
+              ),
+              Text('Mot De Passe'),
+              TextFormField(
+                controller: _tePass,
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(), hintText: 'Mot de Passe'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Le mot de passe est obligatoire !';
                   }
                   return null;
                 },
