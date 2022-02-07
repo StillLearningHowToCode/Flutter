@@ -122,6 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   if (_formKey.currentState!.validate()) {
                     //! vérif si pas de valeur 'null'
                     print("Validated");
+                    clicLogin();
                   } else {
                     print("Not Validated");
                   }
