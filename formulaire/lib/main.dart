@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -60,11 +61,13 @@ class _MyHomePageState extends State<MyHomePage> {
           key: _formKey,
           child: Column(
             children: <Widget>[
-              Text('Login'),
+              // Text('Login'),
               TextFormField(
                 controller: _teLogin,
                 decoration: const InputDecoration(
-                    border: OutlineInputBorder(), hintText: 'Login'),
+                  border: OutlineInputBorder(),
+                  hintText: 'Login',
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Le login est obligatoire !';
@@ -72,22 +75,44 @@ class _MyHomePageState extends State<MyHomePage> {
                   return null;
                 },
               ),
-              Text('Mot De Passe'),
+              // Text('Mot De Passe'),
+              Padding(
+                // Even Padding On All Sides
+                padding: EdgeInsets.all(10.0),
+              ),
               TextFormField(
                 controller: _tePass,
+                obscureText: true,
                 decoration: const InputDecoration(
-                    border: OutlineInputBorder(), hintText: 'Mot de Passe'),
+                  border: OutlineInputBorder(),
+                  hintText: 'Password',
+                ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Le mot de passe est obligatoire !';
-                  }
-                  return null;
+                  } else if (value.length < 6) {
+                    return "Password should be atleast 6 characters";
+                  } else if (value.length > 15) {
+                    return "Password should not be greater than 15 characters";
+                  } else
+                    return null;
                 },
+              ),
+              Padding(
+                // Even Padding On All Sides
+                padding: EdgeInsets.all(10.0),
               ),
               ElevatedButton(
                 // style: style,
-                onPressed: () {},
-                child: const Text('Enabled'),
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    print("Validated");
+                  } else {
+                    print("Not Validated");
+                  }
+                },
+
+                child: const Text('Connection'),
               ),
             ],
             mainAxisAlignment: MainAxisAlignment.center,
