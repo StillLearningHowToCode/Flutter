@@ -6,7 +6,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key); //? accept null
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 //     return null;
                 // },
                 validator: MultiValidator([
-                  RequiredValidator(errorText: "Password is Required"),
+                  RequiredValidator(errorText: "Password is required"),
                   MinLengthValidator(6,
                       errorText: "Password should be atleast 6 characters"),
                   MaxLengthValidator(15,
@@ -120,6 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 // style: style,
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
+                    //! vérif si pas de valeur 'null'
                     print("Validated");
                   } else {
                     print("Not Validated");
