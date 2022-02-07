@@ -1,10 +1,9 @@
 # Flutter
 
-Material components 
-
-https://docs.flutter.dev/development/ui/widgets/material
+[Material components](https://docs.flutter.dev/development/ui/widgets/material)
 
 [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+
 [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
 ## Windows
