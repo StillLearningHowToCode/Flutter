@@ -17,6 +17,12 @@ Lancer la démo flutter
 ```
   flutter run -d chrome
 ```
+
+Form Validator
+```
+flutter pub add form_field_validator
+```
+
 ## Linux
 
 Lancer la démo flutter 
