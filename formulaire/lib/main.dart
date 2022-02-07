@@ -34,6 +34,21 @@ class _MyHomePageState extends State<MyHomePage> {
   final _teLogin = TextEditingController();
   final _tePass = TextEditingController();
 
+// Définition des fonctions
+  void clicLogin() {
+    if (_formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Connexion de ' + this._teLogin.text)));
+    }
+  }
+
+  @override
+  void dispose() {
+    _teLogin.dispose();
+    _tePass.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
