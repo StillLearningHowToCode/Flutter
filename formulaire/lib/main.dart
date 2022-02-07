@@ -10,11 +10,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Formulaire',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter Demo Formulaire'),
     );
   }
 }
@@ -29,13 +29,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+// Déclaration variables (tout le temps en haut)
+  final _formKey = GlobalKey<FormState>();
+  final _teLogin = TextEditingController();
+  final _tePass = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,24 +41,26 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                controller: _teLogin,
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(), hintText: 'Login'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Le login est obligatoire !';
+                  }
+                  return null;
+                },
+              ),
+            ],
+            mainAxisAlignment: MainAxisAlignment.center,
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
