@@ -40,8 +40,9 @@ class _MyHomePageState extends State<MyHomePage> {
 // Définition des fonctions
   void clicLogin() {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Connexion de ' + this._teLogin.text)));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Bienvenue ' + _teLogin.text)));
+      // ou this._teLogin.text
     }
   }
 
@@ -108,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 validator: MultiValidator([
                   RequiredValidator(errorText: "Password is required"),
                   MinLengthValidator(6,
-                      errorText: "Password should be atleast 6 characters"),
+                      errorText: "Password should be at least 6 characters"),
                   MaxLengthValidator(15,
                       errorText:
                           "Password should not be greater than 15 characters")
@@ -129,14 +130,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const SecondRoute()),
+                          builder: (context) => SecondRoute(_teLogin.text)),
                     );
                   } else {
                     print("Not Validated");
                   }
                 },
 
-                child: const Text('Connection'),
+                child: const Text('Connexion'),
               ),
             ],
             mainAxisAlignment: MainAxisAlignment.center,
@@ -148,8 +149,9 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class SecondRoute extends StatelessWidget {
-  const SecondRoute({Key? key}) : super(key: key);
+  const SecondRoute(this.login, {Key? key}) : super(key: key);
 
+  final String login;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -157,11 +159,16 @@ class SecondRoute extends StatelessWidget {
         title: const Text('Second Route'),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
+        child: Column(
+          children: <Widget>[
+            Text('Bienvenue ' + login),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Go back!'),
+            ),
+          ],
         ),
       ),
     );
