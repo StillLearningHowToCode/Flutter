@@ -99,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
             //   style: Theme.of(context).textTheme.headline5,
             // ),
             child: Image.asset(images[index % images.length],
-                height: 100, width: 200),
+                height: 200, width: 200),
           );
         }),
       ),
