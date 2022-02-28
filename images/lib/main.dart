@@ -56,7 +56,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final int _counter = 0;
+  int _counter = 0;
   List<String> images = [];
   @override
   void initState() {
@@ -71,6 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
+      _counter = _counter + 1;
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
@@ -92,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // horizontal, this produces 2 rows.
         crossAxisCount: 3,
         // Generate 50 widgets that display their index in the List.
-        children: List.generate(6, (index) {
+        children: List.generate(_counter, (index) {
           return Center(
             child: Image.asset(images[index % images.length],
                 height: 200, width: 200),
