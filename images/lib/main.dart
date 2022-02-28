@@ -56,6 +56,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final int _counter = 0;
   List<String> images = [];
   @override
   void initState() {
@@ -68,15 +69,15 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  // void _incrementCounter() {
-  //   setState(() {
-  //     // This call to setState tells the Flutter framework that something has
-  //     // changed in this State, which causes it to rerun the build method below
-  //     // so that the display can reflect the updated values. If we changed
-  //     // _counter without calling setState(), then the build method would not be
-  //     // called again, and so nothing would appear to happen.
-  //   });
-  // }
+  void _incrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,16 +93,16 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisCount: 3,
         // Generate 50 widgets that display their index in the List.
         children: List.generate(6, (index) {
-          // int i = 0;
           return Center(
-            // child: Text(
-            //   'Item $index $images',
-            //   style: Theme.of(context).textTheme.headline5,
-            // ),
             child: Image.asset(images[index % images.length],
                 height: 200, width: 200),
           );
         }),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -111,20 +112,6 @@ class _MyHomePageState extends State<MyHomePage> {
 //         // Center is a layout widget. It takes a single child and positions it
 //         // in the middle of the parent.
 //         child: Column(
-//           // Column is also a layout widget. It takes a list of children and
-//           // arranges them vertically. By default, it sizes itself to fit its
-//           // children horizontally, and tries to be as tall as its parent.
-//           //
-//           // Invoke "debug painting" (press "p" in the console, choose the
-//           // "Toggle Debug Paint" action from the Flutter Inspector in Android
-//           // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-//           // to see the wireframe for each widget.
-//           //
-//           // Column has various properties to control how it sizes itself and
-//           // how it positions its children. Here we use mainAxisAlignment to
-//           // center the children vertically; the main axis here is the vertical
-//           // axis because Columns are vertical (the cross axis would be
-//           // horizontal).
 //           mainAxisAlignment: MainAxisAlignment.center,
 //           children: <Widget>[
 //             Image.asset('assets/park.png', height: 100, width: 200),
@@ -134,11 +121,11 @@ class _MyHomePageState extends State<MyHomePage> {
 //           ],
 //         ),
 //       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: _incrementCounter,
-//         tooltip: 'Increment',
-//         child: const Icon(Icons.add),
-//       ), // This trailing comma makes auto-formatting nicer for build methods.
-//     );
+    //   floatingActionButton: FloatingActionButton(
+    //     onPressed: _incrementCounter,
+    //     tooltip: 'Increment',
+    //     child: const Icon(Icons.add),
+    //   ), // This trailing comma makes auto-formatting nicer for build methods.
+    // );
 //   }
 // }
