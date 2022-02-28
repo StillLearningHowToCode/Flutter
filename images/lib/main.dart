@@ -8,6 +8,7 @@ void main() {
   // nombres[3] = "Trois";
   // nombres[4] = "Quatre";
   // print("nombres = $nombres");
+  List<String> words = ['fee', 'fi', 'fo', 'fum'];
   runApp(const MyApp());
 }
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         //
         // Try running your application with "flutter run". You'll see the
         // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.red and then invoke
+        // changing the primarySwatch below to Colors.pink and then invoke
         // "hot reload" (press "r" in the console where you ran "flutter run",
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
@@ -88,18 +89,17 @@ class _MyHomePageState extends State<MyHomePage> {
       body: GridView.count(
         // Create a grid with 2 columns. If you change the scrollDirection to
         // horizontal, this produces 2 rows.
-        crossAxisCount: 2,
+        crossAxisCount: 3,
         // Generate 50 widgets that display their index in the List.
-        children: List.generate(50, (index) {
+        children: List.generate(6, (index) {
           // int i = 0;
-          for (var i = 0; i < 50; i++) {
-            'Item $index, $images[i]';
-          }
           return Center(
-            child: Text(
-              'Item $index',
-              style: Theme.of(context).textTheme.headline5,
-            ),
+            // child: Text(
+            //   'Item $index $images',
+            //   style: Theme.of(context).textTheme.headline5,
+            // ),
+            child: Image.asset(images[index % images.length],
+                height: 100, width: 200),
           );
         }),
       ),
