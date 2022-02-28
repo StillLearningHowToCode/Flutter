@@ -58,28 +58,27 @@ class _MyHomePageState extends State<MyHomePage> {
   List<String> images = [];
   @override
   void initState() {
-    images.add("toto.png");
+    images.add("apartment.png");
+    images.add("blocks.png");
+    images.add("castle.png");
+    images.add("museum.png");
+    images.add("park.png");
+    images.add("temple.png");
     super.initState();
   }
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-    });
-  }
+  // void _incrementCounter() {
+  //   setState(() {
+  //     // This call to setState tells the Flutter framework that something has
+  //     // changed in this State, which causes it to rerun the build method below
+  //     // so that the display can reflect the updated values. If we changed
+  //     // _counter without calling setState(), then the build method would not be
+  //     // called again, and so nothing would appear to happen.
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
@@ -91,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // horizontal, this produces 2 rows.
         crossAxisCount: 2,
         // Generate 100 widgets that display their index in the List.
-        children: List.generate(100, (index) {
+        children: List.generate(50, (index) {
           return Center(
             child: Text(
               'Item $index',
