@@ -13,7 +13,7 @@ Vérifier l'environnement
   flutter doctor
 ```
 
-Lancer la démo flutter
+Lancer la démo flutter 
 ```
   flutter run -d chrome
 ```
