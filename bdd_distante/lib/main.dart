@@ -33,11 +33,11 @@ class _MyHomePageState extends State<MyHomePage> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('AlertDialog Title'),
+          title: const Text('Êtes vous sûr de vouloir supprimer cet élément ?'),
           content: SingleChildScrollView(
             child: ListBody(
               children: const <Widget>[
-                Text('This is a demo alert dialog.'),
+                // Text('Êtes vous sûr de vouloir supprimer cet élément ?'),
                 Text('Would you like to approve of this message?'),
               ],
             ),
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: const Text('-'),
                         ),
                       ],
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                     )),
                 Container(
                   height: 50,
@@ -104,12 +104,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               ]),
             ),
-            ElevatedButton(
-              onPressed: () {
-                _showMyDialog();
-              },
-              child: const Text('-'),
-            ),
+            // ElevatedButton(
+            //   onPressed: () {
+            //     _showMyDialog();
+            //   },
+            //   child: const Text('-'),
+            // ),
           ],
         )); // This trailing comma makes auto-formatting nicer for build methods
   }
