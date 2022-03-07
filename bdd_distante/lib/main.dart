@@ -32,16 +32,29 @@ class _MyHomePageState extends State<MyHomePage> {
   void lire() async {
     var url = Uri.parse(
         'https://lpsil.iutmetz.univ-lorraine.fr/android/ws_recettes/get_categories.php');
+
     var response = await http.post(url, body: {
       "no_categorie": "1",
       "lib_categorie": "Entree",
       "no_ordre": "0",
       "supprimee": "0"
     });
+
     print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
-    var parsedJson = convert.json.decode(response.body);
-    parsedJson.forEach((element) => print('Element : $element'));
+
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+      print('Db successfully loaded');
+      print('Response body: ${response.body}');
+      var parsedJson = convert.json.decode(response.body);
+      parsedJson.forEach((element) => print('Element : $element'));
+      //return Album.fromJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load db');
+    }
   }
 
   void _showMyDialog() {
