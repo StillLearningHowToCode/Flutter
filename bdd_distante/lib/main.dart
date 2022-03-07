@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: const Text('-'),
                         ),
                       ],
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     )),
                 Container(
                   height: 50,
