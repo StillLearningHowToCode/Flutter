@@ -77,10 +77,21 @@ class _MyHomePageState extends State<MyHomePage> {
               child:
                   ListView(padding: const EdgeInsets.all(8), children: <Widget>[
                 Container(
-                  height: 50,
-                  color: Colors.yellow[100],
-                  child: const Center(child: Text('Element A')),
-                ),
+                    // alignment: Alignment.center,
+                    height: 50,
+                    color: Colors.yellow[100],
+                    child: Row(
+                      children: [
+                        const Center(child: Text('Element A')),
+                        ElevatedButton(
+                          onPressed: () {
+                            _showMyDialog();
+                          },
+                          child: const Text('-'),
+                        ),
+                      ],
+                      mainAxisAlignment: MainAxisAlignment.center,
+                    )),
                 Container(
                   height: 50,
                   color: Colors.pink[50],
