@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dart:convert' as convert;
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp());
@@ -27,6 +29,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  void lire() async {
+    var url = Uri.parse(
+        'https://lpsil.iutmetz.univ-lorraine.fr/android/ws_recettes/get_categories.php');
+    var response = await http.post(url, body: {
+      "no_categorie": "1",
+      "lib_categorie": "Entree",
+      "no_ordre": "0",
+      "supprimee": "0"
+    });
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    var parsedJson = convert.json.decode(response.body);
+    parsedJson.forEach((element) => print('Element : $element'));
+  }
+
   void _showMyDialog() {
     showDialog<void>(
       context: context,
@@ -59,16 +76,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    lire();
     return Scaffold(
         appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
           title: Text(widget.title),
         ),
         body: Column(
