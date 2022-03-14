@@ -1,7 +1,47 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
+
+Future<Menu> fetchMenu() async {
+  final response = await http.get(Uri.parse(
+      'https://lpsil.iutmetz.univ-lorraine.fr/android/ws_recettes/get_categories.php'));
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return Menu.fromJson(jsonDecode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load menu');
+  }
+}
+
+class Menu {
+  final int noCateg;
+  final String libCateg;
+  final int noOrdre;
+  final int supprime;
+
+  const Menu({
+    required this.noCateg,
+    required this.libCateg,
+    required this.noOrdre,
+    required this.supprime,
+  });
+
+  factory Menu.fromJson(Map<String, dynamic> json) {
+    return Menu(
+      noCateg: int.parse(json['no_categorie']),
+      libCateg: json['lib_categorie'],
+      noOrdre: int.parse(json['no_ordre']),
+      supprime: int.parse(json['supprimee']),
+    );
+  }
+}
 
 void main() {
   runApp(const MyApp());
@@ -30,16 +70,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late Future<Menu> futureMenu;
+
+  @override
+  void initState() {
+    super.initState();
+    futureMenu = fetchMenu();
+  }
+
   void lire() async {
+    print("--------------------- lire() ---------------------");
     var url = Uri.parse(
         'https://lpsil.iutmetz.univ-lorraine.fr/android/ws_recettes/get_categories.php');
 
-    var response = await http.post(url, body: {
-      "no_categorie": "1",
-      "lib_categorie": "Entree",
-      "no_ordre": "0",
-      "supprimee": "0"
-    });
+    var response = await http.post(url);
 
     print('Response status: ${response.statusCode}');
 
@@ -49,7 +93,11 @@ class _MyHomePageState extends State<MyHomePage> {
       print('Db successfully loaded');
       print('Response body: ${response.body}');
       var parsedJson = convert.json.decode(response.body);
-      parsedJson.forEach((element) => print('Element : $element'));
+
+      parsedJson.forEach((element) => Menu.fromJson(element));
+      var _liste = parsedJson;
+      _liste.forEach((element) => print("Element :$element"));
+      print("--------------------- fin lire() ---------------------");
       //return Album.fromJson(jsonDecode(response.body));
     } else {
       // If the server did not return a 200 OK response,
